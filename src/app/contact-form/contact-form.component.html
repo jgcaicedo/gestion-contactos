@@ -1,0 +1,33 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="nombre">Nombre</label>
+    <input id="nombre" formControlName="nombre" />
+  </div>
+
+  <div>
+    <label for="apellido">Apellido</label>
+    <input id="apellido" formControlName="apellido" />
+  </div>
+
+  <div>
+    <label for="celular">Celular</label>
+    <input id="celular" formControlName="celular" />
+  </div>
+
+  <div>
+    <label for="correo">Correo</label>
+    <input id="correo" formControlName="correo" />
+  </div>
+
+  <div>
+    <label for="direccion">Dirección</label>
+    <input id="direccion" formControlName="direccion" />
+  </div>
+
+  <div>
+    <label for="telefono">Teléfono</label>
+    <input id="telefono" formControlName="telefono" />
+  </div>
+
+  <button type="submit" [disabled]="contactForm.invalid">Guardar</button>
+</form>
