@@ -1,32 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ContactService } from '../contact.service';
-import { Contact } from '../contact.model'; // Importa la interfaz Contact
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 
 @Component({
+  imports: [ReactiveFormsModule, RouterOutlet,CommonModule,FormsModule,],
   standalone: true,
   selector: 'app-contact-list',
-  imports: [CommonModule,RouterLink], // Asegúrate de incluir CommonModule aquí
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css']
 })
-export class ContactListComponent implements OnInit {
-
-  contacts: Contact[] = [];
+export class ContactListComponent {
+  contacts: any[] = [];
+  selectedContact: any = null;
 
   constructor(private contactService: ContactService) { }
 
-  ngOnInit(): void {
-    // Llama a getContacts para obtener todos los contactos
+  ngOnInit() {
+    this.loadContacts();
+  }
+
+  loadContacts() {
     this.contactService.getContacts().subscribe(data => {
       this.contacts = data;
     });
   }
 
-  deleteContact(id: number): void {
+  deleteContact(id: number) {
     this.contactService.deleteContact(id).subscribe(() => {
-      this.contacts = this.contacts.filter(contact => contact.id !== id);
+      this.loadContacts();
     });
   }
+
+  editContact(contact: any) {
+    this.selectedContact = { ...contact }; // Clonar el contacto para editar
+  }
+
+  updateContact() {
+    this.contactService.updateContact(this.selectedContact, this.selectedContact.id).subscribe(() => {
+      this.loadContacts();
+      this.selectedContact = null; // Limpiar la selección después de la edición
+    });
+  }
+
+  cancelEdit() {
+    this.selectedContact = null; // Cancelar la edición
+  }
 }
+

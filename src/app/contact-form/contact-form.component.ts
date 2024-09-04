@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-contact-form',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterOutlet,HttpClientModule], // Asegúrate de importar ReactiveFormsModule aquí
+  imports: [ReactiveFormsModule, RouterOutlet], // Asegúrate de importar ReactiveFormsModule aquí
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.css']
 })

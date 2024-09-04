@@ -1,10 +1,41 @@
 <div>
+  <div class="table-container">
     <h2>Lista de Contactos</h2>
-    <ul>
-      <li *ngFor="let contact of contacts">
-        {{ contact.nombre }} - {{ contact.celular }}
-        <button (click)="deleteContact(contact.id)">Eliminar</button>
-      </li>
-    </ul>
+    <table class="contact-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Celular</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of contacts">
+          <td>{{ contact.nombre }}</td>
+          <td>{{ contact.celular }}</td>
+          <td>
+            <button (click)="editContact(contact)">Editar</button>
+            <button (click)="deleteContact(contact.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   
+
+
+  <!-- Formulario para editar el contacto -->
+  <div *ngIf="selectedContact">
+    <h3>Editar Contacto</h3>
+    <form (ngSubmit)="updateContact()">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" [(ngModel)]="selectedContact.nombre" name="nombre">
+      
+      <label for="celular">Celular:</label>
+      <input type="text" id="celular" [(ngModel)]="selectedContact.celular" name="celular">
+
+      <button type="submit">Guardar</button>
+      <button type="button" (click)="cancelEdit()">Cancelar</button>
+    </form>
+  </div>
+</div>
