@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title = 'gestion-contactos';
+
   isContactListVisible = false;
   isContactFormVisible = false;
 
@@ -26,5 +28,4 @@ export class AppComponent {
     this.isContactFormVisible = true;
   }
   
-  title = 'gestion-contactos';
 }

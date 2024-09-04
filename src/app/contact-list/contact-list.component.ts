@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ContactService } from '../contact.service';
 import { Contact } from '../contact.model'; // Importa la interfaz Contact
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-contact-list',
-  imports: [CommonModule,HttpClientModule], // Asegúrate de incluir CommonModule aquí
+  imports: [CommonModule,RouterLink], // Asegúrate de incluir CommonModule aquí
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css']
 })
